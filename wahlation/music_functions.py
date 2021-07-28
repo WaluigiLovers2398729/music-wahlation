@@ -150,8 +150,12 @@ def transcribe_audio(spectrogram, freqs, times):
 
 def pitch_shift(recorded_audio, sampling_rate, target_freq):
     S, freqs, times = get_spectogram(recorded_audio)
-    new = 466.16
     old = 1108.7305 
-    steps = 12*np.log(new/old)/np.log(2)
+    steps = 12*np.log(target_freq/old)/np.log(2)
     shifted_audio = librosa.effects.pitch_shift(recorded_audio, sampling_rate, n_steps=steps)
-    return shifted_audio
+    return shifted_audio, sampling_rate
+
+def speed_shift():
+    """
+    """
+
